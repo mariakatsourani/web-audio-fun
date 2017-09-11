@@ -1,0 +1,18 @@
+.App {
+  text-align: center; }
+
+.container {
+  min-height: 50vh; }
+
+.settingsBar > div {
+  width: 50%;
+  display: inline-block; }
+
+.key {
+  display: inline-block;
+  width: 30px;
+  border: 1px solid #b1b1b1;
+  border-radius: 5px;
+  transition: background-color ease .3s; }
+  .key:hover {
+    background-color: grey; }
