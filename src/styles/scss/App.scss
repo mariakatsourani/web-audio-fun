@@ -1,9 +1,18 @@
-.App {
-  text-align: center;
+//Color palette
+$almost-black: #10131a;
+$dark-blue: #202833;
+$grey: #c5c6c8;
+$bright-blue: #66fcf1;
+$dark-turquoise: #46a29f;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: $almost-black;
+  color: white;
 }
 
-.container {
-  min-height: 50vh;
+.App {
+  text-align: center;
 }
 
 .settingsBar > div {
@@ -11,14 +20,40 @@
   display: inline-block;
 }
 
-.key {
-  display: inline-block;
-  width: 30px;
-  border: 1px solid rgb(177, 177, 177);
-  border-radius: 5px;
-  transition: background-color ease .3s;
+#keyboard {
+  padding: 2em 0 5em;
+}
 
+.octave {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.key {
+  display: flex;
+  font-weight: 600;
+  border: 2px solid $bright-blue;
+  border-radius: 5px;
+  transition: all ease .2s;
+  padding: 10px 5px;
+  margin: 0 10px;
+  min-height: 45px;
+  width: 30px;
+  
   &:hover {
-    background-color: grey;
+    background-color: $bright-blue;
+    color: $almost-black;
+    cursor: pointer;
   }
+
+  > div {
+    align-self: flex-end;
+    margin: 0 auto;
+  }
+}
+
+.sub {
+  font-size: .5em;
+  font-weight: 100;
 }
