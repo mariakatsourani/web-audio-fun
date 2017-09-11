@@ -8,18 +8,34 @@ class App extends Component {
   constructor() {
     super();
     
-    let audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    let oscList = [];
-    let masterGainNode = null;
-    let keyboard = document.getElementById('keyboard'); 
-    let wavePicker = document.querySelector('select[name="waveform"]'); 
-    let volumeControl = document.querySelector('input[name="volume"]'); 
+    this.state = {
+      audioContext: new (window.AudioContext || window.webkitAudioContext)(),
+      masterGainNode: null
+    }
+
+    const keyboard = document.getElementById('keyboard'); 
+    const wavePicker = document.querySelector('select[name="waveform"]'); 
+    const volumeControl = document.querySelector('input[name="volume"]'); 
+  
+    let customWaveform = null;
+    let sineTerms = null;
+    let cosineTerms = null;
+
+    this.state.masterGainNode = this.state.audioContext.createGain();
+    this.state.masterGainNode.connect(this.state.audioContext.destination);
+    this.state.masterGainNode.gain.value = 0.5;
+    // this.state.masterGainNode.gain.value = volumeControl.value;
+
+    sineTerms = new Float32Array([0, 0, 1, 0, 1]);
+    cosineTerms = new Float32Array(sineTerms.length);
+    customWaveform = this.state.audioContext.createPeriodicWave(cosineTerms, sineTerms);  
+    console.log(this.state.audioContext);
   }
 
   render() {
     return (
       <div className="App">
-        <Keyboard />
+        <Keyboard audioContext={this.state.audioContext} masterGainNode={this.state.masterGainNode} />
         <div className="settingsBar">
           <Volume />
           <Waveform />

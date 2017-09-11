@@ -12,7 +12,6 @@ class Volume extends Component {
     this.setState({value: e.target.value});
   }
 
-
   render() {
     return (
       <div className="left">

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Key from './Key';
 
 class Keyboard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     
     let noteFreq = null;
     this.noteFreq = this.createNoteTable();
+    this.playTone = this.playTone.bind(this);
   }
 
   createNoteTable() {
@@ -112,6 +113,17 @@ class Keyboard extends Component {
     noteFreq[8]["C"] = 4186.009044809578154;
     return noteFreq;
   }
+
+  playTone(freq) {
+    let osc = this.props.audioContext.createOscillator();
+    osc.connect(this.props.masterGainNode);
+
+    osc.type = "sine";
+    osc.frequency.value = freq;
+    osc.start();
+    
+    return osc;
+  }
   
   render() {
     return (
@@ -124,7 +136,7 @@ class Keyboard extends Component {
               <div key={index} className="octave">
                 {
                   keyList.map((key, i) => {
-                    return (<Key key={i} octave={index} note={key[0]} frequency={key[1]} />)
+                    return (<Key playTone={this.playTone} key={i} octave={index} note={key[0]} frequency={key[1]} />)
                   })
                 }
               </div>
