@@ -11,6 +11,9 @@ class App extends Component {
     let audioContext = new (window.AudioContext || window.webkitAudioContext)();
     let oscList = [];
     let masterGainNode = null;
+    let keyboard = document.getElementById('keyboard'); 
+    let wavePicker = document.querySelector('select[name="waveform"]'); 
+    let volumeControl = document.querySelector('input[name="volume"]'); 
   }
 
   render() {
