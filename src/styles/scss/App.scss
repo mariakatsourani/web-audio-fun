@@ -1,5 +1,6 @@
 @import './utils/variables';
 @import './components/slider';
+@import './components/dropdown';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -14,7 +15,7 @@ body {
 
 .settingsBar {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 #keyboard {
@@ -53,4 +54,8 @@ body {
 .sub {
   font-size: .5em;
   font-weight: 100;
+}
+
+.volume {
+  margin-right: 15em;
 }

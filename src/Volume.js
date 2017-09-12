@@ -14,13 +14,14 @@ class Volume extends Component {
   render() {
     return (
       <div className="volume">
-        <label htmlFor="volume-slider">Volume:</label>
-        <input onChange={this.handleChange} type="range" min="0.0" max="1.0" step="0.01" 
-          defaultValue="0.5" list="volumes" name="volume" id="volume-slider" />
-        <datalist id="volumes">
-          <option value="0.0" label="Mute" />
-          <option value="1.0" label="100%" />
-        </datalist>
+        <label>Volume:
+          <input onChange={this.handleChange} type="range" min="0.0" max="1.0" step="0.01" 
+            defaultValue="0.5" list="volumes" name="volume" id="volume-slider" />
+          <datalist id="volumes">
+            <option value="0.0" label="Mute" />
+            <option value="1.0" label="100%" />
+          </datalist>
+        </label>
       </div>
     );
   }

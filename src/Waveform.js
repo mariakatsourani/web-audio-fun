@@ -23,12 +23,13 @@ class Waveform extends Component {
   render() {
     return (
       <div className="waveform">
-        <span>Current Waveform:</span>
-        <select name="waveform" value={this.state.value} onChange={this.handleChange}>
-          {this.state.options.map((i, k) => {
-            return <option value={i.value} key={k}>{i.name}</option>
-          })}
-        </select>
+        <label>Current Waveform:
+          <select name="waveform" value={this.state.value} onChange={this.handleChange}>
+            {this.state.options.map((i, k) => {
+              return <option value={i.value} key={k}>{i.name}</option>
+            })}
+          </select>
+        </label>
       </div>
     );
   }
