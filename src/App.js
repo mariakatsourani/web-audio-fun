@@ -14,7 +14,6 @@ class App extends Component {
     }
 
     const wavePicker = document.querySelector('select[name="waveform"]'); 
-    const volumeControl = document.querySelector('input[name="volume"]'); 
   
     let customWaveform = null;
     let sineTerms = null;
@@ -22,12 +21,17 @@ class App extends Component {
 
     this.state.masterGainNode = this.state.audioContext.createGain();
     this.state.masterGainNode.connect(this.state.audioContext.destination);
-    this.state.masterGainNode.gain.value = 0.5;
-    // this.state.masterGainNode.gain.value = volumeControl.value;
-
+    this.state.masterGainNode.gain.value = 0.5;    
+    
     sineTerms = new Float32Array([0, 0, 1, 0, 1]);
     cosineTerms = new Float32Array(sineTerms.length);
     customWaveform = this.state.audioContext.createPeriodicWave(cosineTerms, sineTerms);  
+  }
+  
+  setVolume = vol => {
+    let newMasterGainNode = this.state.masterGainNode;
+    newMasterGainNode.gain.value = vol;
+    this.setState({masterGainNode: newMasterGainNode});
   }
 
   render() {
@@ -35,7 +39,7 @@ class App extends Component {
       <div className="App">
         <Keyboard audioContext={this.state.audioContext} masterGainNode={this.state.masterGainNode} />
         <div className="settingsBar">
-          <Volume />
+          <Volume setVolume={this.setVolume} />
           <Waveform />
         </div>
       </div>

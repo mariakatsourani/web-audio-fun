@@ -39,6 +39,7 @@ class Keyboard extends Component {
     noteFreq[1]["A"] = 55.000000000000000;
     noteFreq[1]["A#"] = 58.270470189761239;
     noteFreq[1]["B"] = 61.735412657015513;
+    
     noteFreq[2]["C"] = 65.406391325149658;
     noteFreq[2]["C#"] = 69.295657744218024;
     noteFreq[2]["D"] = 73.416191979351890;
