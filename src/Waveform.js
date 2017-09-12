@@ -22,7 +22,7 @@ class Waveform extends Component {
 
   render() {
     return (
-      <div className="right">
+      <div className="waveform">
         <span>Current Waveform:</span>
         <select name="waveform" value={this.state.value} onChange={this.handleChange}>
           {this.state.options.map((i, k) => {

@@ -1,9 +1,5 @@
-//Color palette
-$almost-black: #10131a;
-$dark-blue: #202833;
-$grey: #c5c6c8;
-$bright-blue: #66fcf1;
-$dark-turquoise: #46a29f;
+@import './utils/variables';
+@import './components/slider';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -15,9 +11,9 @@ body {
   text-align: center;
 }
 
-.settingsBar > div {
-  width: 50%;
-  display: inline-block;
+.settingsBar {
+  display: flex;
+  justify-content: space-around;
 }
 
 #keyboard {
