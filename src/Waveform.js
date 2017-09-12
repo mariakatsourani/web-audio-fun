@@ -14,12 +14,10 @@ class Waveform extends Component {
         { name: 'Custom', value: 'custom' },
       ]
     };
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleChange = (e) => {
+    this.setState({value: e.target.value});
   }
 
   render() {

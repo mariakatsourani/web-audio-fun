@@ -11,8 +11,6 @@ class Keyboard extends Component {
     
     let noteFreq = null;
     this.noteFreq = this.createNoteTable();
-    this.addNote = this.addNote.bind(this);
-    this.removeNote = this.removeNote.bind(this);
 
     for (let i = 0; i < 9; i++) {
       this.state.oscList[i] = [];
@@ -123,14 +121,14 @@ class Keyboard extends Component {
     return noteFreq;
   }
 
-  addNote(oct, note, freq) {
+  addNote = (oct, note, freq) => {
     this.setState(() => {
       this.state.oscList[oct][note] = 
       this.playTone(freq);
     });
   }
   
-  removeNote(oct, note) {
+  removeNote = (oct, note) => {
     this.state.oscList[oct][note].stop();
     this.setState(() => {
       this.state.oscList[oct][note] = null;

@@ -3,18 +3,15 @@ import React, { Component } from 'react';
 class Key extends Component {
   constructor(props) {
     super(props);
-
-    this.notePressed = this.notePressed.bind(this);
-    this.noteReleased = this.noteReleased.bind(this);
   }
 
-  notePressed() {
+  notePressed = () => {
     this.props.addNote(this.props.octave,
       this.props.note,
       this.props.frequency);
   }
 
-  noteReleased() {
+  noteReleased = () => {
    this.props.removeNote(this.props.octave, this.props.note);
   }
 

@@ -5,10 +5,9 @@ class Volume extends Component {
     super();
     
     this.state = {value: ''}
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({value: e.target.value});
   }
 
