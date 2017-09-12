@@ -7,7 +7,7 @@ class Volume extends Component {
     this.state = {value: ''}
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({value: e.target.value});
   }
 
