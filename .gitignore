@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+#transpiled css
+/src/styles/css/App.css
+
 # testing
 /coverage
 
