@@ -4,10 +4,19 @@ import Key from './Key';
 class Keyboard extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      oscList: []
+    }
     
     let noteFreq = null;
     this.noteFreq = this.createNoteTable();
-    this.playTone = this.playTone.bind(this);
+    this.addNote = this.addNote.bind(this);
+    this.removeNote = this.removeNote.bind(this);
+
+    for (let i = 0; i < 9; i++) {
+      this.state.oscList[i] = [];
+    }
   }
 
   createNoteTable() {
@@ -114,6 +123,20 @@ class Keyboard extends Component {
     return noteFreq;
   }
 
+  addNote(oct, note, freq) {
+    this.setState(() => {
+      this.state.oscList[oct][note] = 
+      this.playTone(freq);
+    });
+  }
+  
+  removeNote(oct, note) {
+    this.state.oscList[oct][note].stop();
+    this.setState(() => {
+      this.state.oscList[oct][note] = null;
+    });
+  }
+
   playTone(freq) {
     let osc = this.props.audioContext.createOscillator();
     osc.connect(this.props.masterGainNode);
@@ -136,7 +159,7 @@ class Keyboard extends Component {
               <div key={index} className="octave">
                 {
                   keyList.map((key, i) => {
-                    return (<Key playTone={this.playTone} key={i} octave={index} note={key[0]} frequency={key[1]} />)
+                    return (<Key addNote={this.addNote} removeNote={this.removeNote} key={i} octave={index} note={key[0]} frequency={key[1]} />)
                   })
                 }
               </div>

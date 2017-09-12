@@ -6,21 +6,16 @@ class Key extends Component {
 
     this.notePressed = this.notePressed.bind(this);
     this.noteReleased = this.noteReleased.bind(this);
-    // this.props.playTone = this.props.playTone.bind(this);
-
-    let oscList = [];
-    for (let i = 0; i < 9; i++) {
-      oscList[i] = [];
-    }
   }
 
   notePressed() {
-    this.props.playTone(25.4);    
+    this.props.addNote(this.props.octave,
+      this.props.note,
+      this.props.frequency);
   }
 
   noteReleased() {
-    // this.oscList[4['A']] = 
-    //   this.props.playTone(this.props.frequency);
+   this.props.removeNote(this.props.octave, this.props.note);
   }
 
   render() {

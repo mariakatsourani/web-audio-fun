@@ -13,7 +13,6 @@ class App extends Component {
       masterGainNode: null
     }
 
-    const keyboard = document.getElementById('keyboard'); 
     const wavePicker = document.querySelector('select[name="waveform"]'); 
     const volumeControl = document.querySelector('input[name="volume"]'); 
   
@@ -29,7 +28,6 @@ class App extends Component {
     sineTerms = new Float32Array([0, 0, 1, 0, 1]);
     cosineTerms = new Float32Array(sineTerms.length);
     customWaveform = this.state.audioContext.createPeriodicWave(cosineTerms, sineTerms);  
-    console.log(this.state.audioContext);
   }
 
   render() {
