@@ -24,18 +24,10 @@ class App extends Component {
     }
 
     const wavePicker = document.querySelector('select[name="waveform"]'); 
-  
-    let customWaveform = null;
-    let sineTerms = null;
-    let cosineTerms = null;
-
+    
     this.state.masterGainNode = this.state.audioContext.createGain();
     this.state.masterGainNode.connect(this.state.audioContext.destination);
-    this.state.masterGainNode.gain.value = 0.2;    
-    
-    sineTerms = new Float32Array([0, 0, 1, 0, 1]);
-    cosineTerms = new Float32Array(sineTerms.length);
-    customWaveform = this.state.audioContext.createPeriodicWave(cosineTerms, sineTerms);  
+    this.state.masterGainNode.gain.value = 0.5;     
   }
   
   setVolume = vol => {
