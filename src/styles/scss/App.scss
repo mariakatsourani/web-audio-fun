@@ -10,7 +10,7 @@ body {
 
 .App {
   text-align: center;
-  padding: 5em 0 8em;
+  padding: 3em 0 8em;
 }
 
 .settingsBar {
@@ -60,7 +60,49 @@ body {
   margin-right: 15em;
 }
 
-.icons {
-  width: 80px;
-  height: 80px;
+.play-btn {
+  margin-bottom: 2em;
+
+  button {
+    background-color: transparent;
+    border: none;
+
+
+    &:hover {
+      cursor: pointer;
+
+      .hover-overlay {
+        opacity: 1;
+        transform: translateY(-60px);
+      }
+
+      .play {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+svg {
+  &.icons {
+    width: 60px;
+    height: 60px;
+    display: block;
+    transition: opacity .4s ease-in-out; 
+
+    path {
+      fill: $bright-blue;
+    }
+  }
+}
+
+.hover-overlay {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  transform: translateY(-135px);
+  opacity: 0;
+  transition: 
+    opacity .2s ease-in 0.1s,
+    transform .5s ease-in-out;
 }
