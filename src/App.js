@@ -7,20 +7,18 @@ import Waveform from './Waveform';
 class App extends Component {
   constructor() {
     super();
-    
-    this.state = {
-      audioContext: new (window.AudioContext || window.webkitAudioContext)(),
-      masterGainNode: null,
-      waveform : {
-        value: 'sine'
-      }
-    }
 
-    const wavePicker = document.querySelector('select[name="waveform"]'); 
-    
-    this.state.masterGainNode = this.state.audioContext.createGain();
+    this.state = this.initState();
     this.state.masterGainNode.connect(this.state.audioContext.destination);
-    this.state.masterGainNode.gain.value = 0.5;     
+  }
+
+  initState() {
+    let obj = {
+      audioContext: new (window.AudioContext || window.webkitAudioContext)(),
+      waveform : { value: 'sine' }
+    }
+    obj.masterGainNode = obj.audioContext.createGain();
+    return obj;
   }
   
   setVolume = vol => {

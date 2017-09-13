@@ -6,15 +6,17 @@ class Keyboard extends Component {
     super(props);
 
     this.state = {
-      oscList: []
+      oscList: this.initializeOscList()
     }
     
-    let noteFreq = null;
     this.noteFreq = this.createNoteTable();
-
-    for (let i = 0; i < 9; i++) {
-      this.state.oscList[i] = [];
-    }
+    this.initializeOscList();
+  }
+  
+  initializeOscList() {
+    let oscList = [];
+    for (let i = 0; i < 9; i++) oscList[i] = [];
+    return oscList;
   }
 
   createNoteTable() {
@@ -123,17 +125,17 @@ class Keyboard extends Component {
   }
 
   addNote = (oct, note, freq) => {
-    this.setState(() => {
-      this.state.oscList[oct][note] = 
-      this.playTone(freq);
-    });
+    let newOscList = this.state.oscList;
+    newOscList[oct][note] = this.playTone(freq);
+    this.setState({oscList: newOscList});
   }
   
   removeNote = (oct, note) => {
     this.state.oscList[oct][note].stop();
-    this.setState(() => {
-      this.state.oscList[oct][note] = null;
-    });
+
+    let newOscList = this.state.oscList;
+    newOscList[oct][note] = null;
+    this.setState({oscList: newOscList});
   }
 
   playTone(freq) {

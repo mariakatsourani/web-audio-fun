@@ -4,7 +4,6 @@ class Waveform extends Component {
   constructor() {
     super();
 
-    const options = [];
     this.options = [
       { name: 'Sine', value: 'sine' },
       { name: 'Square', value: 'square' },

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class Key extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   notePressed = () => {
     this.props.addNote(this.props.octave,
