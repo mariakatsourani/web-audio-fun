@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Key from './Key';
+import Play from './Play';
 
 class Keyboard extends Component {
   constructor(props) {
@@ -8,11 +9,11 @@ class Keyboard extends Component {
     this.state = {
       oscList: this.initializeOscList()
     }
-    
+
     this.noteFreq = this.createNoteTable();
     this.initializeOscList();
   }
-  
+
   initializeOscList() {
     let oscList = [];
     for (let i = 0; i < 9; i++) oscList[i] = [];
@@ -24,11 +25,11 @@ class Keyboard extends Component {
     for (let i = 0; i < 9; i++) {
       noteFreq[i] = [];
     }
-  
+
     noteFreq[0]["A"] = 27.500000000000000;
     noteFreq[0]["A#"] = 29.135235094880619;
     noteFreq[0]["B"] = 30.867706328507756;
-  
+
     noteFreq[1]["C"] = 32.703195662574829;
     noteFreq[1]["C#"] = 34.647828872109012;
     noteFreq[1]["D"] = 36.708095989675945;
@@ -41,7 +42,7 @@ class Keyboard extends Component {
     noteFreq[1]["A"] = 55.000000000000000;
     noteFreq[1]["A#"] = 58.270470189761239;
     noteFreq[1]["B"] = 61.735412657015513;
-    
+
     noteFreq[2]["C"] = 65.406391325149658;
     noteFreq[2]["C#"] = 69.295657744218024;
     noteFreq[2]["D"] = 73.416191979351890;
@@ -54,7 +55,7 @@ class Keyboard extends Component {
     noteFreq[2]["A"] = 110.000000000000000;
     noteFreq[2]["A#"] = 116.540940379522479;
     noteFreq[2]["B"] = 123.470825314031027;
-  
+
     noteFreq[3]["C"] = 130.812782650299317;
     noteFreq[3]["C#"] = 138.591315488436048;
     noteFreq[3]["D"] = 146.832383958703780;
@@ -67,7 +68,7 @@ class Keyboard extends Component {
     noteFreq[3]["A"] = 220.000000000000000;
     noteFreq[3]["A#"] = 233.081880759044958;
     noteFreq[3]["B"] = 246.941650628062055;
-  
+
     noteFreq[4]["C"] = 261.625565300598634;
     noteFreq[4]["C#"] = 277.182630976872096;
     noteFreq[4]["D"] = 293.664767917407560;
@@ -80,7 +81,7 @@ class Keyboard extends Component {
     noteFreq[4]["A"] = 440.000000000000000;
     noteFreq[4]["A#"] = 466.163761518089916;
     noteFreq[4]["B"] = 493.883301256124111;
-  
+
     noteFreq[5]["C"] = 523.251130601197269;
     noteFreq[5]["C#"] = 554.365261953744192;
     noteFreq[5]["D"] = 587.329535834815120;
@@ -93,7 +94,7 @@ class Keyboard extends Component {
     noteFreq[5]["A"] = 880.000000000000000;
     noteFreq[5]["A#"] = 932.327523036179832;
     noteFreq[5]["B"] = 987.766602512248223;
-  
+
     noteFreq[6]["C"] = 1046.502261202394538;
     noteFreq[6]["C#"] = 1108.730523907488384;
     noteFreq[6]["D"] = 1174.659071669630241;
@@ -119,7 +120,7 @@ class Keyboard extends Component {
     noteFreq[7]["A"] = 3520.000000000000000;
     noteFreq[7]["A#"] = 3729.310092144719331;
     noteFreq[7]["B"] = 3951.066410048992894;
-  
+
     noteFreq[8]["C"] = 4186.009044809578154;
     return noteFreq;
   }
@@ -127,15 +128,15 @@ class Keyboard extends Component {
   addNote = (oct, note, freq) => {
     let newOscList = this.state.oscList;
     newOscList[oct][note] = this.playTone(freq);
-    this.setState({oscList: newOscList});
+    this.setState({ oscList: newOscList });
   }
-  
+
   removeNote = (oct, note) => {
     this.state.oscList[oct][note].stop();
 
     let newOscList = this.state.oscList;
     newOscList[oct][note] = null;
-    this.setState({oscList: newOscList});
+    this.setState({ oscList: newOscList });
   }
 
   playTone(freq) {
@@ -145,25 +146,26 @@ class Keyboard extends Component {
     osc.type = this.props.waveform;
     osc.frequency.value = freq;
     osc.start();
-    
+
     return osc;
   }
-  
+
   render() {
     return (
       <div className="container">
+        <Play />
         <div id="keyboard">
           {
             this.noteFreq.map((keys, index) => {
-            let keyList = Object.entries(keys);
-             return (
-              <div key={index} className="octave">
-                {
-                  keyList.map((key, i) => {
-                    return (<Key addNote={this.addNote} removeNote={this.removeNote} key={i} octave={index} note={key[0]} frequency={key[1]} />)
-                  })
-                }
-              </div>
+              let keyList = Object.entries(keys);
+              return (
+                <div key={index} className="octave">
+                  {
+                    keyList.map((key, i) => {
+                      return (<Key addNote={this.addNote} removeNote={this.removeNote} key={i} octave={index} note={key[0]} frequency={key[1]} />)
+                    })
+                  }
+                </div>
               );
             })
           }
