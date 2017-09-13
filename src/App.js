@@ -12,14 +12,7 @@ class App extends Component {
       audioContext: new (window.AudioContext || window.webkitAudioContext)(),
       masterGainNode: null,
       waveform : {
-        value: 'sine',
-        options: [
-          { name: 'Sine', value: 'sine' },
-          { name: 'Square', value: 'square' },
-          { name: 'Sawtooth', value: 'sawtooth' },
-          { name: 'Triangle', value: 'triangle' },
-          { name: 'Custom', value: 'custom' },
-        ]
+        value: 'sine'
       }
     }
 

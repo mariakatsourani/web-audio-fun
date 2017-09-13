@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 
 class Waveform extends Component {
+  constructor() {
+    super();
+
+    const options = [];
+    this.options = [
+      { name: 'Sine', value: 'sine' },
+      { name: 'Square', value: 'square' },
+      { name: 'Sawtooth', value: 'sawtooth' },
+      { name: 'Triangle', value: 'triangle' },
+    ]
+  }
+  
   handleChange = e => {
     this.props.setWaveform(e.target.value);
   }
@@ -10,7 +22,7 @@ class Waveform extends Component {
       <div className="waveform">
         <label>Current Waveform:
           <select name="waveform" value={this.props.waveform.value} onChange={this.handleChange}>
-            {this.props.waveform.options.map((i, k) => {
+            {this.options.map((i, k) => {
               return <option value={i.value} key={k}>{i.name}</option>
             })}
           </select>
