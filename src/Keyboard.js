@@ -140,7 +140,7 @@ class Keyboard extends Component {
     let osc = this.props.audioContext.createOscillator();
     osc.connect(this.props.masterGainNode);
 
-    osc.type = "sine";
+    osc.type = this.props.waveform;
     osc.frequency.value = freq;
     osc.start();
     
