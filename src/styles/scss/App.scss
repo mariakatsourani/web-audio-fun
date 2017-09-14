@@ -2,6 +2,10 @@
 @import './components/slider';
 @import './components/dropdown';
 
+* {
+  // transition: opacity .2s ease;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   background-color: $almost-black;
@@ -38,16 +42,31 @@ body {
   margin: 0 10px;
   min-height: 45px;
   width: 30px;
+  transition: background-color .1s ease-in;
   
   &:hover {
     background-color: $bright-blue;
-    color: $almost-black;
     cursor: pointer;
+
+    .key-details {
+      opacity: 0;
+    }
+
+    .add-to-melody {
+      opacity: 1;
+    }
   }
 
   > div {
     align-self: flex-end;
     margin: 0 auto;
+  }
+
+  
+  .add-to-melody {
+    opacity: 0;
+    position: absolute;
+    align-self: center;
   }
 }
 
@@ -76,7 +95,7 @@ body {
         transform: translateY(-60px);
       }
 
-      .play {
+      .play-icon {
         opacity: 0;
       }
     }
@@ -92,6 +111,12 @@ svg {
 
     path {
       fill: $bright-blue;
+    }
+
+    &.add-icon {
+      width: 30px;
+      height: 30px;
+      polygon { fill: $almost-black; }
     }
   }
 }

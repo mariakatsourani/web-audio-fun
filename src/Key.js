@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AddButton from './AddButton';
 
 class Key extends Component {
 
@@ -14,12 +15,12 @@ class Key extends Component {
 
   render() {
     return (
-      <div className="key" 
-        onMouseDown={this.notePressed} onMouseUp={this.noteReleased}>
-        <div>
+      <div className="key" onMouseDown={this.notePressed} onMouseUp={this.noteReleased}>
+        <div className="key-details">
           {this.props.note}
           <sub>{this.props.octave}</sub>
         </div>
+        <AddButton />
       </div>
     );
   }
